@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-// import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as ShelfActions from '../actions/ShelfActions'
 import * as CartActions from '../actions/CartActions'
+import * as WishListActions from '../actions/WishListActions'
 
 class Shelf extends Component {
   constructor(props){
@@ -23,6 +23,7 @@ class Shelf extends Component {
       return (
           <li key={i}>
             <button onClick={() => { this.props.addToCart(item) }}>+</button>
+            <button onClick={() => { this.props.addToWishes(item) }}>♥</button>
             {item}
           </li>
         )
@@ -56,14 +57,8 @@ function mapStateToProps(state, props){
   }
 }
 
-// Define and dispatch any actions we need to have performed
-// function mapDispatchToProps(dispatch){
-//   return {
-//     actions: bindActionCreators(ShelfActions, dispatch)
-//   }
-// }
-
 export default connect(mapStateToProps, {
   addToShelf: ShelfActions.addToShelf,
-  addToCart: CartActions.addToCart
+  addToCart: CartActions.addToCart,
+  addToWishes: WishListActions.addToWishes
 })(Shelf)
